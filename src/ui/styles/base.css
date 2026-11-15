@@ -1,0 +1,62 @@
+/* 共通の見た目の値（色・文字・角丸・影）。部品の CSS はここの変数を使う。 */
+:root {
+  /* 紙とインク */
+  --paper: #fffdf6;
+  --paper-2: #f7f2e4;
+  --paper-edge: #e6dcc4;
+  --ink: #2b3440;
+  --ink-2: #5b6675;
+  --ink-3: #8b95a3;
+  /* 空と草 */
+  --sky: #2f8fdd;
+  --sky-deep: #1f6fb8;
+  --sky-pale: #e3f2fd;
+  --grass: #5fae4e;
+  /* 操作の色 */
+  --accent: #ff7a2f;        /* 飛ばすボタン・今回の軌跡 */
+  --accent-deep: #e85f12;
+  --accent-pale: #fff0e4;
+  --good: #2fa56b;
+  --warn: #e0a31a;
+  --bad: #e2504a;
+  /* 力の矢印 */
+  --lift: #2f80ed;
+  --drag: #e2504a;
+  --gravity: #7cb518;
+  /* 軌跡の4色（順番に使う） */
+  --trail-0: #ff7a2f;
+  --trail-1: #2f80ed;
+  --trail-2: #27ae60;
+  --trail-3: #9b51e0;
+  /* 形 */
+  --radius: 14px;
+  --radius-s: 8px;
+  --shadow: 0 10px 30px rgba(31, 60, 90, 0.18), 0 2px 6px rgba(31, 60, 90, 0.10);
+  --shadow-s: 0 2px 8px rgba(31, 60, 90, 0.14);
+  --panel-w: 372px;
+  --font: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Meiryo", system-ui, sans-serif;
+  --font-num: "Segoe UI", "Helvetica Neue", "Hiragino Sans", "Yu Gothic UI", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; height: 100%; overflow: hidden;
+  background: #bfe3f7;
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+#app { position: fixed; inset: 0; overflow: hidden; }
+#view { position: absolute; inset: 0; width: 100%; height: 100%; display: block; outline: none; }
+#panel-root { position: absolute; left: 0; top: 0; bottom: 0; z-index: 10; pointer-events: none; }
+#panel-root > * { pointer-events: auto; }
+#overlay-root { position: absolute; inset: 0; z-index: 20; pointer-events: none; }
+#overlay-root > * { pointer-events: auto; }
+button { font-family: inherit; font-size: inherit; color: inherit; cursor: pointer; }
+input, select { font-family: inherit; font-size: inherit; color: inherit; }
+.num { font-family: var(--font-num); font-variant-numeric: tabular-nums; }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-thumb { background: rgba(43, 52, 64, 0.22); border-radius: 6px; border: 2px solid transparent; background-clip: padding-box; }
+::-webkit-scrollbar-thumb:hover { background: rgba(43, 52, 64, 0.4); border: 2px solid transparent; background-clip: padding-box; }
