@@ -9,20 +9,34 @@
 | 1 | 要件を読む | 済 |
 | 2 | CLAUDE.md | 済 |
 | 3 | docs/design.md | 済（画面を作りながら追記する） |
-| 4 | 物理の計算とテスト | 済（`npm test` 14本すべて通過） |
-| 5 | 画面・3D・操作・音・保存 | **作業中** |
+| 4 | 物理の計算とテスト | 済（`npm test`：物理14本＋保存10本） |
+| 5 | 画面・3D・操作・音・保存 | **作業中**（下の表） |
 | 6 | 判定基準13項目の確認 | 未 |
 | 7 | 磨き込み3周 | 未 |
 | 8 | 最後の報告 | 未 |
 
-## 手順4までで出来ているもの
-- `src/core/`：設定、機体、空気力、風、シミュレーション、解析、一言解説、お手本5機
-- `tests/physics.test.mjs`：14本（石のように落ちる／エネルギーが増えない／刻み半分で5%以内／完全一致／重り3通り／上反角／滑空比の範囲／風／垂直尾翼／お手本の違い／左右対称／作れない形／上昇気流／再生）
-- 開発用の道具：`scripts/dev/report.mjs`（お手本と代表的な条件を飛ばして数字と解説を一覧）
+## 手順5の内訳
+
+| 部品 | ファイル | 状態 |
+|---|---|---|
+| 全体の進行 | `src/ui/main.js`、`camera.js`、`scene/aim.js` | 書いた。まだ全体では動かしていない |
+| 音・保存 | `audio.js`、`storage.js`、`tests/storage.test.mjs` | 済（テスト10本通過、音は波形の数値で確認） |
+| 表示部品 | `overlays.js`、`styles/overlays.css` | 済（画面写真で確認） |
+| 風の粒・上昇気流・着地の目印 | `scene/effects.js` | 済（サブエージェントの報告。全体に入れて要確認） |
+| 3D世界 | `scene/world.js` | 途中（本体は書けている。単体表示での確認がまだ） |
+| 機体・軌跡・矢印 | `scene/plane.js`、`trails.js`、`arrows.js` | 途中（見直しの周回が残り） |
+| 設計パネル・設計図 | `panel.js`、`blueprint.js`、`styles/panel.css` | 途中（見直しの周回が残り） |
+
+※ 途中の3つは、利用上限で一度止まり、続きから再開させた。もしまた止まったら、
+　上のファイルを読んで `docs/design.md` 10-3 の約束（API）どおりか確かめ、足りない所を埋める。
 
 ## 次にすること
-1. 画面の土台（`build.mjs`、`src/ui/styles/base.css`、開発用の単体表示の道具）
-2. 画面の部品を分担して作る（world / plane・trails・arrows / panel・blueprint / overlays / audio・storage）
-3. `src/ui/main.js` でつなぐ → `npm run build` → `dist/index.html`
-4. Playwright で判定基準13項目を確認 → `docs/verification.md`
-5. 磨き込み3周（各周の内容をこのファイルに追記）
+1. 途中の3部品が終わったら `npm run build` → `dist/index.html`。コンソールのエラー0件にする
+2. `scripts/verify.mjs`（Playwright）で判定基準13項目を確認 → `docs/verification.md`、画面写真は `docs/screenshots/`
+3. 磨き込み3周（各周の内容をこのファイルに追記）
+4. 最後の報告
+
+## 道具
+- `node scripts/dev/report.mjs`：お手本と代表的な条件を飛ばして、数字と一言解説を一覧
+- `node build.mjs --entry=scripts/dev/demos/<名前>.js --out=.tmp/<名前>.html --minify=false`：部品を単体で表示
+- `node scripts/dev/shot.mjs <html> <png> [--w --h --wait --eval]`：画面写真（ヘッドレスの Edge）とコンソールのエラー表示

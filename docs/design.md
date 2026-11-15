@@ -232,7 +232,11 @@ build.mjs   esbuild で全部まとめ、dist/index.html の1ファイルにす�
 | ファイル | 中身 |
 |---|---|
 | `src/ui/main.js` | 全体の進行（状態、再生、カメラ、各部品のつなぎ） |
-| `src/ui/scene/world.js` | 空・光・影・草原・丘・雲・投げ台・距離の目盛り・風の粒・上昇気流・着地の目印 |
+| `src/ui/camera.js` | カメラ（見回し／追いかけ／横から／上から） |
+| `src/ui/scene/world.js` | 空・光・影・草原・丘・雲・投げ台・距離の目盛り |
+| `src/ui/scene/effects.js` | 風の粒・上昇気流・着地の目印 |
+| `src/ui/scene/aim.js` | 設計画面で投げる向きを示す矢印 |
+| `src/ui/scene/renderer.js`・`label.js` | 描画の共通設定、3D内の文字ラベル |
 | `src/ui/scene/plane.js` | 機体の3D（紙の質感・折り目・重りのクリップ） |
 | `src/ui/scene/trails.js` | 軌跡（今回＋前回まで最大3本） |
 | `src/ui/scene/arrows.js` | 力の矢印（揚力・抗力・重力） |
@@ -248,21 +252,29 @@ build.mjs   esbuild で全部まとめ、dist/index.html の1ファイルにす�
 向き（四元数）は core では `[w,x,y,z]`、Three.js では `(x,y,z,w)`。渡すときに並べ替える。
 
 ```js
-// scene/world.js
-createWorld(THREE) → {
+// scene/world.js（空・光・影・草原・丘・雲・投げ台・距離の目盛り）
+createWorld() → {
   scene,                       // THREE.Scene
   sun,                         // 影を落とす DirectionalLight
-  setEnvironment(setup),       // 風の粒・上昇気流の見た目を設定に合わせる
   setLaunch(setup),            // 投げ台の高さ・向き
+  setWind(setup),              // 草や雲のゆれ
+  update(dt, time, focus, camera), // 毎コマ。focus(THREE.Vector3) の周りに影・草を寄せる
+}
+// scene/effects.js（風の粒・上昇気流・着地の目印）
+createEffects(scene) → {
+  setEnvironment(setup),       // 風の粒・上昇気流の見た目を設定に合わせる（粒は core の makeWind の風の場で動かす）
   setLandingMarkers(list),     // [{ pos:[x,y,z], color:'#rrggbb', label:'21.1m', current:true }]
-  update(dt, time, focus, camera), // 毎コマ。focus(THREE.Vector3) の周りに影・粒・草を寄せる
+  update(dt, time, focus, camera),
 }
 // scene/plane.js
-createPlane(THREE) → { group, rebuild(aircraft), setPose(pos, quatWXYZ) }   // group の原点＝重心
+createPlane() → { group, rebuild(aircraft), setPose(pos, quatWXYZ) }   // group の原点＝重心
 // scene/trails.js
-createTrails(THREE, scene) → { start(rec, color), setTime(t), finish(), archive(), list(), setResolution(w, h), colorForNext() }
+createTrails(scene) → { start(rec, color), setTime(t), finish(), archive(), list(), setResolution(w, h), colorForNext() }
 // scene/arrows.js
-createForceArrows(THREE) → { group, update(sample, mass, camera), setVisible(b) }
+createForceArrows() → { group, update(sample, mass, camera), setVisible(b) }
+// scene/aim.js（設計画面で投げる向きを示す矢印）、camera.js（カメラの動かし方）
+createAim() → { group, update(setup), setVisible(b) }
+createCameraRig(canvas) → { camera, setOrbit(center, opts), setFlight(kind, heading, pos), update(dt, pos, vel), ... }
 // panel.js
 createPanel(root, { setup, onChange(key, value), onPreset(id), onFly(), onSave(name), onLoad(i), onDelete(i) })
   → { el, setSetup(setup, aircraft, info), setSaves(list), setActivePreset(id|null), setVisible(b), setFlyEnabled(b) }
