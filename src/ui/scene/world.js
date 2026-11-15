@@ -17,7 +17,7 @@ const SHADOW_HALF = 7;       // 影の箱の半分 [m]
 const SHADOW_SIZE = 2048;
 
 // 草むら
-const GRASS_CELL = 0.28, GRASS_GRID = 100, GRASS_RADIUS = 13.5;
+const GRASS_CELL = 0.18, GRASS_GRID = 110, GRASS_RADIUS = 9.5;
 const FLOWER_CELL = 1.05, FLOWER_GRID = 26;
 
 // ============================================================
@@ -58,7 +58,7 @@ function makeGrassTexture() {
   const c = document.createElement('canvas'); c.width = c.height = S;
   const g = c.getContext('2d');
   const rng = makeRng(2024);
-  g.fillStyle = '#4a7524'; g.fillRect(0, 0, S, S);
+  g.fillStyle = '#5a7b2c'; g.fillRect(0, 0, S, S);
   const blob = (n, rmin, rmax, colors, amin, amax) => {
     for (let i = 0; i < n; i++) {
       const x = rng() * S, y = rng() * S, r = rmin + rng() * (rmax - rmin);
@@ -70,8 +70,8 @@ function makeGrassTexture() {
       });
     }
   };
-  blob(70, 90, 220, ['58,98,30', '84,128,40', '44,78,24', '110,140,52'], 0.16, 0.30);
-  blob(260, 30, 90, ['40,74,22', '96,138,46', '70,112,34', '124,150,60', '30,58,18'], 0.14, 0.28);
+  blob(70, 90, 220, ['70,100,34', '104,130,46', '58,86,28', '130,142,60'], 0.16, 0.30);
+  blob(260, 30, 90, ['52,80,26', '112,134,50', '86,112,38', '138,150,66', '40,62,20'], 0.14, 0.28);
   // 細かい葉の筋
   const strokes = (n, cols, alpha, lmin, lmax, wid) => {
     g.lineCap = 'round';
@@ -82,8 +82,8 @@ function makeGrassTexture() {
       wrapDraw(S, x, y, l, (px, py) => { g.beginPath(); g.moveTo(px, py); g.lineTo(px + Math.cos(a) * l, py + Math.sin(a) * l); g.stroke(); });
     }
   };
-  strokes(5200, ['24,48,14', '32,62,18'], 0.55, 6, 15, 1.5);   // 影の葉
-  strokes(9000, ['86,130,38', '110,150,50', '140,168,64'], 0.5, 6, 16, 1.4); // 明るい葉
+  strokes(7000, ['28,50,16', '38,64,20'], 0.6, 6, 16, 1.6);   // 影の葉
+  strokes(12000, ['104,138,46', '128,156,58', '156,172,76'], 0.5, 6, 16, 1.4); // 明るい葉
   strokes(1500, ['170,185,80', '196,190,96'], 0.4, 6, 12, 1.3);   // 枯れ草
   strokes(900, ['30,40,16'], 0.5, 3, 8, 2.2);
   const t = new THREE.CanvasTexture(c);
@@ -105,11 +105,11 @@ function makeCloudTexture(seed) {
   const g = c.getContext('2d');
   const rng = makeRng(seed);
   const puffs = [];
-  const N = 24;
+  const N = 44;
   for (let i = 0; i < N; i++) {
     const t = rng();
     const dome = Math.sin(t * Math.PI);
-    const r = 24 + rng() * 30 + dome * 36;
+    const r = 14 + rng() * 22 + dome * 26;
     puffs.push({ x: W * (0.12 + 0.76 * t), y: H * 0.70 - dome * H * 0.30 * (0.35 + rng() * 0.8) - rng() * 10, r });
   }
   const draw = (p, dx, dy, rs, stops) => {
@@ -118,8 +118,8 @@ function makeCloudTexture(seed) {
     for (const [o, cl] of stops) gr.addColorStop(o, cl);
     g.fillStyle = gr; g.fillRect(x - r, y - r, r * 2, r * 2);
   };
-  for (const p of puffs) draw(p, 0, p.r * 0.30, 1.05, [[0, 'rgba(150,172,205,0.55)'], [0.6, 'rgba(160,182,214,0.30)'], [1, 'rgba(160,182,214,0)']]);
-  for (const p of puffs) draw(p, -p.r * 0.05, -p.r * 0.04, 1.0, [[0, 'rgba(250,250,252,0.95)'], [0.55, 'rgba(244,247,252,0.65)'], [1, 'rgba(240,244,252,0)']]);
+  for (const p of puffs) draw(p, 0, p.r * 0.30, 1.05, [[0, 'rgba(120,145,185,0.75)'], [0.6, 'rgba(135,158,196,0.45)'], [1, 'rgba(140,162,200,0)']]);
+  for (const p of puffs) draw(p, -p.r * 0.05, -p.r * 0.04, 1.0, [[0, 'rgba(252,252,254,1)'], [0.6, 'rgba(246,249,253,0.8)'], [1, 'rgba(240,244,252,0)']]);
   for (const p of puffs) draw(p, -p.r * 0.18, -p.r * 0.26, 0.62, [[0, 'rgba(255,253,248,0.85)'], [1, 'rgba(255,253,248,0)']]);
   g.globalCompositeOperation = 'destination-in';
   const m = g.createLinearGradient(0, 0, 0, H);
@@ -204,7 +204,7 @@ function bufToGeometry(b) {
 
 const WOOD = {
   leg: col('#6a4a2c'), beam: col('#85603a'), brace: col('#7a5733'), joist: col('#6f4f31'),
-  plank: col('#b3875a'), ladder: col('#b99467'), stone: col('#8c8c86'), rail: col('#dcd5c4'), railDark: col('#a89a80'),
+  plank: col('#b3875a'), ladder: col('#b99467'), stone: col('#a39d8e'), rail: col('#dcd5c4'), railDark: col('#a89a80'),
 };
 const vary = (c, rng, amt = 0.14) => { const k = 1 - amt / 2 + rng() * amt; return new THREE.Color(c.r * k, c.g * k, c.b * k); };
 
@@ -233,7 +233,7 @@ function buildTowerGeometry(H) {
     const a = C(ix, iz, 0), z = C(ix, iz, 1);
     addBeam(b, a[0], a[1], a[2], z[0], z[1], z[2], legW, legW, vary(WOOD.leg, rng));
     // 足もとの石
-    if (tall) addBeam(b, a[0], -0.05, a[2], a[0], 0.16, a[2], 0.2, 0.2, vary(WOOD.stone, rng, 0.2));
+    if (tall) addBeam(b, a[0], -0.05, a[2], a[0], 0.12, a[2], 0.15, 0.15, vary(WOOD.stone, rng, 0.2));
   }
   const nSeg = Hs < 0.9 ? 0 : Math.max(1, Math.round(Hs / 1.6));
   const ring = (t, w, color) => {
@@ -289,11 +289,10 @@ function buildTowerGeometry(H) {
 /** 発射レール（x＝向いている方向、原点＝機体の位置）。床の上面は y = −0.25 */
 function buildRailGeometry() {
   const b = newBuf();
-  addBeam(b, -0.32, -0.07, 0, 0.27, -0.07, 0, 0.022, 0.02, WOOD.rail);        // 上面 y = −0.06
-  addBeam(b, -0.28, -0.25, 0, -0.28, -0.08, 0, 0.03, 0.03, WOOD.railDark);    // 後ろの支柱
-  addBeam(b, 0.20, -0.25, 0, 0.20, -0.08, 0, 0.03, 0.03, WOOD.railDark);      // 前の支柱
-  addBeam(b, -0.34, -0.07, 0, -0.31, -0.07, 0, 0.05, 0.04, WOOD.railDark);    // 後ろ止め
-  addBeam(b, -0.34, -0.25, 0, 0.27, -0.25, 0, 0.05, 0.012, WOOD.railDark);    // 土台の板
+  const c = col('#8a7a62'), d = col('#6f6150');
+  addBeam(b, -0.175, -0.0675, 0, 0.175, -0.0675, 0, 0.015, 0.015, c);        // 上面 y = −0.06
+  addBeam(b, -0.15, -0.25, 0, -0.15, -0.075, 0, 0.015, 0.015, d);            // 後ろの支柱
+  addBeam(b, 0.15, -0.25, 0, 0.15, -0.075, 0, 0.015, 0.015, d);              // 前の支柱
   return bufToGeometry(b);
 }
 
@@ -302,15 +301,15 @@ function buildRailGeometry() {
 // ============================================================
 function makeTuftGeometry() {
   const rng = makeRng(77);
-  const cBase = col('#18300c'), cMid = col('#3d7418'), cTip = col('#9bbd40');
+  const cBase = col('#1f3410'), cMid = col('#487620'), cTip = col('#a3b84a');
   const pos = [], colr = [], nor = [];
   const push = (p, c) => { pos.push(p[0], p[1], p[2]); colr.push(c.r, c.g, c.b); nor.push(0, 1, 0); };
   const blades = 5;
   for (let i = 0; i < blades; i++) {
     const ang = (i / blades + (rng() - 0.5) * 0.25) * Math.PI * 2;
-    const rad = 0.015 + rng() * 0.05;
+    const rad = 0.02 + rng() * 0.06;
     const bx = Math.cos(ang) * rad, bz = Math.sin(ang) * rad;
-    const h = 0.22 + rng() * 0.20, w = 0.011 + rng() * 0.006, lean = 0.04 + rng() * 0.11;
+    const h = 0.045 + rng() * 0.04, w = 0.0055 + rng() * 0.003, lean = 0.012 + rng() * 0.03;
     const dx = Math.cos(ang), dz = Math.sin(ang);
     const j = (rng() - 0.5) * 0.7;
     const tx = -dz * Math.cos(j) + dx * Math.sin(j), tz = dx * Math.cos(j) + dz * Math.sin(j);
@@ -337,7 +336,7 @@ function makeFlowerGeometry() {
   const pos = [], colr = [], nor = [];
   const push = (p, c) => { pos.push(p[0], p[1], p[2]); colr.push(c.r, c.g, c.b); nor.push(0, 1, 0); };
   const stem = col('#3b6b1c'), petal = new THREE.Color(1, 1, 1), center = col('#e8a00c');
-  const h = 0.30, w = 0.004;
+  const h = 0.13, w = 0.0025;
   // 茎（十字の細い板）
   for (const a of [0, Math.PI / 2]) {
     const tx = Math.cos(a) * w, tz = Math.sin(a) * w;
@@ -357,7 +356,7 @@ function makeFlowerGeometry() {
   for (let i = 0; i < nP; i++) {
     const a0 = (i / nP) * Math.PI * 2, a1 = ((i + 0.5) / nP) * Math.PI * 2, a2 = ((i + 1) / nP) * Math.PI * 2;
     const c = [0, h, 0];
-    const p0 = P(0.013, a0), p1 = P(0.032, a1), p2 = P(0.013, a2);
+    const p0 = P(0.007, a0), p1 = P(0.018, a1), p2 = P(0.007, a2);
     push(c, petal); push(p0, petal); push(p1, petal);
     push(c, petal); push(p1, petal); push(p2, petal);
   }
@@ -365,7 +364,7 @@ function makeFlowerGeometry() {
   for (let i = 0; i < nC; i++) {
     const a0 = (i / nC) * Math.PI * 2, a1 = ((i + 1) / nC) * Math.PI * 2;
     const o = [0, 0.0025, 0];
-    const p0 = P(0.0095, a0), p1 = P(0.0095, a1);
+    const p0 = P(0.005, a0), p1 = P(0.005, a1);
     push([0, h + 0.003, 0.0015], center); push([p0[0], p0[1] + 0.003, p0[2] + 0.0015], center); push([p1[0], p1[1] + 0.003, p1[2] + 0.0015], center);
   }
   void hp;
@@ -465,7 +464,7 @@ export function createWorld() {
   const wind = { speed: 0, dirX: 0, dirZ: -1, tSpeed: 0, tDirX: 0, tDirZ: -1 };
 
   // ---- 光 ----
-  const hemi = new THREE.HemisphereLight(col('#bcd8f7'), col('#7f9a48'), 1.55);
+  const hemi = new THREE.HemisphereLight(col('#c4d8f0'), col('#b4b996'), 1.55);
   scene.add(hemi);
   const sun = new THREE.DirectionalLight(col('#fff1dc'), 3.1);
   sun.castShadow = true;
@@ -596,10 +595,11 @@ export function createWorld() {
           vec2 base = floor(uFocus.xz / uCell);
           vec2 wc = base + mod(aCell - base + uGrid * 0.5, uGrid) - uGrid * 0.5;
           vec2 hA = hash22(wc * 1.37 + 11.0), hB = hash22(wc * 0.77 + 3.1);
-          vec2 p = (wc + 0.5 + (hA - 0.5) * 0.95) * uCell;
+          vec2 warp = vec2(vnoise(wc * 0.31), vnoise(wc * 0.31 + 7.7)) - 0.5;
+          vec2 p = (wc + 0.5 + (hA - 0.5) * 1.0 + warp * 0.9) * uCell;
           float d = distance(p, uFocus.xz);
           float rO = length(p);
-          float fade = 1.0 - smoothstep(uRadius - 4.0, uRadius, d);
+          float fade = 1.0 - smoothstep(uRadius - 6.5, uRadius, d);
           fade *= 1.0 - smoothstep(380.0, 398.0, rO);
           fade *= smoothstep(0.9, 2.0, rO + (p.x > 0.0 ? 0.0 : 0.4));
           // 距離の線のまわりは短く刈る（チョークが埋もれない）
@@ -607,20 +607,20 @@ export function createWorld() {
           float rd = abs(rO - sp * floor(rO / sp + 0.5));
           float hw = 0.06 + 0.0016 * rO;
           float mow = p.x > 0.0 ? smoothstep(hw, hw + 0.25, rd) : 1.0;
-          float patch = vnoise(p * 0.33);
-          float s = (0.62 + 0.75 * hB.x) * (0.78 + 0.55 * patch) * fade * mix(0.2, 1.0, mow);
+          float pat = vnoise(p * 0.33);
+          float s = (0.78 + 0.45 * hB.x) * (0.85 + 0.3 * pat) * fade * mix(0.18, 1.0, mow);
           float yaw = hB.y * 6.2831853;
           float cy = cos(yaw), sy = sin(yaw);
           vec3 lp = transformed;
-          float hf = clamp(lp.y / 0.4, 0.0, 1.0);
+          float hf = clamp(lp.y / 0.1, 0.0, 1.0);
           lp.xz = vec2(cy * lp.x - sy * lp.z, sy * lp.x + cy * lp.z);
           // 風：進む向きに倒れ、波のように強弱がつく。風0でもごく小さくゆれる
           float ph = dot(p, uWindDir) * 0.42 - uTime * (1.3 + 0.5 * uWindSpeed);
           float gust = 0.5 + 0.5 * sin(ph + 1.6 * sin(dot(p, vec2(-uWindDir.y, uWindDir.x)) * 0.23));
-          float lean = 0.010 + 0.020 * uWindSpeed;
+          float lean = 0.003 + 0.006 * uWindSpeed;
           float amp = lean * (0.55 + 0.9 * gust);
-          float fl = sin(uTime * (2.1 + 0.4 * uWindSpeed) + hA.x * 40.0) * (0.006 + 0.004 * uWindSpeed);
-          vec2 disp = (uWindDir * amp + vec2(-uWindDir.y, uWindDir.x) * fl + uWindDir * 0.004 * sin(uTime * 0.9 + hA.y * 30.0)) * hf * hf;
+          float fl = sin(uTime * (2.1 + 0.4 * uWindSpeed) + hA.x * 40.0) * (0.0015 + 0.0012 * uWindSpeed);
+          vec2 disp = (uWindDir * amp + vec2(-uWindDir.y, uWindDir.x) * fl + uWindDir * 0.001 * sin(uTime * 0.9 + hA.y * 30.0)) * hf * hf;
           float dl = length(disp);
           lp = lp * s;
           lp.y -= dl * hf * 0.6 * s;
@@ -677,12 +677,12 @@ export function createWorld() {
           float yaw = hA.y * 6.2831853;
           float cy = cos(yaw), sy = sin(yaw);
           vec3 lp = transformed;
-          float hf = clamp(lp.y / 0.3, 0.0, 1.0);
+          float hf = clamp(lp.y / 0.13, 0.0, 1.0);
           lp.xz = vec2(cy * lp.x - sy * lp.z, sy * lp.x + cy * lp.z);
           float ph = dot(p, uWindDir) * 0.42 - uTime * (1.3 + 0.5 * uWindSpeed);
           float gust = 0.5 + 0.5 * sin(ph + 1.6 * sin(dot(p, vec2(-uWindDir.y, uWindDir.x)) * 0.23));
-          float amp = (0.012 + 0.024 * uWindSpeed) * (0.55 + 0.9 * gust);
-          float fl = sin(uTime * (1.9 + 0.3 * uWindSpeed) + hA.x * 40.0) * (0.008 + 0.005 * uWindSpeed);
+          float amp = (0.004 + 0.008 * uWindSpeed) * (0.55 + 0.9 * gust);
+          float fl = sin(uTime * (1.9 + 0.3 * uWindSpeed) + hA.x * 40.0) * (0.003 + 0.002 * uWindSpeed);
           vec2 disp = (uWindDir * amp + vec2(-uWindDir.y, uWindDir.x) * fl) * hf * hf;
           transformed = vec3(p.x + (lp.x + disp.x) * s, lp.y * s, p.y + (lp.z + disp.y) * s);
           float yellow = step(0.5, hB.x);
@@ -702,7 +702,7 @@ export function createWorld() {
 
   // ---- 距離の目盛り（円弧のチョーク線＋地面に寝かせた数字）----
   const rings = [];
-  for (let r = 5; r <= 100; r += 5) rings.push(r);
+  for (let r = 5; r <= 100; r += (r < 60 ? 5 : 10)) rings.push(r);
   for (let r = 110; r <= 200; r += 10) rings.push(r);
   for (let r = 250; r <= 350; r += 50) rings.push(r);
   const lineGeo = (() => {
@@ -762,14 +762,14 @@ export function createWorld() {
       const w = canvas.width * fit, h = canvas.height * fit;
       cg.drawImage(canvas, col_ * CW + (CW - w) / 2, row * CH + (CH - h) / 2, w, h);
       // 地面に寝かせる：文字の右＝+z、文字の上＝+x
-      const hgt = 1.5 + 0.03 * d;          // 札の高さ [m]（文字は約半分）
+      const hgt = 1.05 + 0.004 * d;          // 札の高さ [m]（文字は約半分）
       const wid = hgt * (CW / CH);
-      const cx = d + hgt * 0.28 + 0.3;
+      const cx = d - 0.5 - 0.002 * d, zc = 0.8 + wid * 0.25;
       const u0 = col_ / COLS, u1 = (col_ + 1) / COLS, v1 = 1 - row / ROWS, v0 = v1 - 1 / ROWS;
       const k = pos.length / 3;
       const P = [[0, 0], [1, 0], [1, 1], [0, 1]];
       for (const [u, v] of P) {
-        pos.push(cx + (v - 0.5) * hgt, 0.02, (u - 0.5) * wid);
+        pos.push(cx + (v - 0.5) * hgt, 0.02, (u - 0.5) * wid + zc);
         uv.push(u0 + (u1 - u0) * u, v0 + (v1 - v0) * v);
       }
       idx.push(k, k + 1, k + 2, k, k + 2, k + 3);
@@ -878,15 +878,15 @@ export function createWorld() {
     for (let i = 0; i < N; i++) {
       const front = rng() < 0.65;
       const az = front ? (rng() - 0.5) * 2.4 : rng() * Math.PI * 2;
-      const dist = 320 + rng() * 650;
-      const w = 260 + rng() * 360;
+      const dist = 450 + rng() * 650;
+      const w = 220 + rng() * 260;
       const mat = new THREE.SpriteMaterial({ map: cloudTex[i % 4], transparent: true, depthWrite: false, opacity: 0.92, color: new THREE.Color(1.22, 1.22, 1.25) });
       const sp = new THREE.Sprite(mat);
       sp.scale.set(w, w * 0.5, 1);
       sp.renderOrder = -50;
       sp.frustumCulled = false;
       scene.add(sp);
-      list.push({ sp, x: Math.cos(az) * dist, z: Math.sin(az) * dist, y: 200 + rng() * 300, mat });
+      list.push({ sp, x: Math.cos(az) * dist, z: Math.sin(az) * dist, y: 70 + rng() * 200, mat });
     }
     return list;
   })();

@@ -222,7 +222,7 @@ function finishFlight(skipped) {
   updateLandingMarkers(true);
   // 着地点のまわりをゆっくり回って見せる（ドラッグ・ホイールで自由に見回せる）
   const back = Math.atan2(-Math.sin(setup.throwHeading * D2R), -Math.cos(setup.throwHeading * D2R));
-  rig.setOrbit(planePos, { dist: 3.4, az: back + 0.55, el: 24 * D2R, minDist: 0.5, maxDist: 120, auto: 0.1, fov: 44, ease: 1.2 });
+  rig.setOrbit(planePos, { dist: 2.6, az: back + 0.55, el: 30 * D2R, minDist: 0.4, maxDist: 120, auto: 0.1, fov: 44, ease: 1.2 });
 }
 
 function backToDesign() {
@@ -334,7 +334,7 @@ function frame(now) {
   const w = canvas.clientWidth, h = canvas.clientHeight;
   if (w !== lastW || h !== lastH) {
     renderer.setSize(w, h, false);
-    trails.setResolution(w * renderer.getPixelRatio(), h * renderer.getPixelRatio());
+    trails.setResolution(w, h);
     lastW = w; lastH = h;
   }
 

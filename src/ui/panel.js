@@ -145,7 +145,7 @@ export function createPanel(root, opts = {}) {
   for (const p of PRESETS) {
     const btn = h('button', {
       type: 'button', class: 'pn-preset' + (p.id === 'fail' ? ' pn-preset-warn' : ''),
-      'data-id': p.id, 'aria-pressed': 'false', title: p.blurb,
+      'data-id': p.id, 'data-preset': p.id, 'aria-pressed': 'false', title: p.blurb,
       onClick: () => cb.onPreset(p.id),
       onMouseenter: () => { hoverPreset = p.id; updateBlurb(); },
       onMouseleave: () => { hoverPreset = null; updateBlurb(); },
@@ -203,19 +203,19 @@ export function createPanel(root, opts = {}) {
 
     if (p.type === 'bool') {
       const sw = h('button', {
-        type: 'button', class: 'pn-switch', role: 'switch', 'aria-checked': 'false', 'aria-label': p.label,
+        type: 'button', class: 'pn-switch', role: 'switch', 'data-key': p.key, 'aria-checked': 'false', 'aria-label': p.label,
         onClick: () => cb.onChange(p.key, !setup[p.key]),
       }, h('span', { class: 'pn-switch-knob' }));
       const state = h('span', { class: 'pn-switch-state', text: 'なし' });
       ref.sw = sw; ref.state = state;
-      ref.el = h('div', { class: 'pn-item pn-item-bool', 'data-key': p.key },
+      ref.el = h('div', { class: 'pn-item pn-item-bool', 'data-item': p.key },
         h('div', { class: 'pn-row' }, label, h('span', { class: 'pn-switch-wrap' }, state, sw)));
       return ref;
     }
 
     const input = h('input', {
       type: 'range', class: 'pn-range', min: p.min, max: p.max, step: p.step, value: p.def,
-      'aria-label': p.label, 'aria-describedby': p.hint ? tipId : null,
+      'aria-label': p.label, 'aria-describedby': p.hint ? tipId : null, 'data-key': p.key,
     });
     input.addEventListener('input', () => cb.onChange(p.key, Number(input.value)));
     const decor = sliderDecor();
@@ -239,7 +239,7 @@ export function createPanel(root, opts = {}) {
       ref.compass = cp;
       ctl = h('div', { class: 'pn-ctl-wind' }, cp.el, wrap);
     }
-    ref.el = h('div', { class: 'pn-item' + (p.key === 'windDir' ? ' pn-item-wind' : ''), 'data-key': p.key },
+    ref.el = h('div', { class: 'pn-item' + (p.key === 'windDir' ? ' pn-item-wind' : ''), 'data-item': p.key },
       h('div', { class: 'pn-row' }, label, val), ctl);
     return ref;
   }
@@ -258,8 +258,8 @@ export function createPanel(root, opts = {}) {
   scroll.append(groupsWrap);
 
   // 保存
-  const nameInput = h('input', { type: 'text', class: 'pn-input', maxlength: 20, autocomplete: 'off', spellcheck: 'false', 'aria-label': '設計の名前' });
-  const saveBtn = h('button', { type: 'submit', class: 'pn-btn pn-btn-primary pn-save-btn', text: '保存' });
+  const nameInput = h('input', { type: 'text', class: 'pn-input', maxlength: 20, autocomplete: 'off', spellcheck: 'false', 'aria-label': '設計の名前', 'data-role': 'save-name' });
+  const saveBtn = h('button', { type: 'submit', class: 'pn-btn pn-btn-primary pn-save-btn', 'data-action': 'save', text: '保存' });
   const errEl = h('p', { class: 'pn-err', role: 'alert', hidden: true });
   const countEl = h('span', { class: 'pn-count num' });
   const listEl = h('ul', { class: 'pn-savelist' });
@@ -343,7 +343,7 @@ export function createPanel(root, opts = {}) {
   }
 
   // 「飛ばす」ボタン（いちばん下に固定）
-  const flyBtn = h('button', { type: 'button', class: 'pn-fly', onClick: () => cb.onFly() },
+  const flyBtn = h('button', { type: 'button', class: 'pn-fly', 'data-action': 'fly', onClick: () => cb.onFly() },
     planeIcon('pn-fly-icon'),
     h('span', { class: 'pn-fly-text', text: '飛ばす' }),
     h('kbd', { class: 'pn-kbd', text: 'Space' }));

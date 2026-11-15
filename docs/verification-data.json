@@ -1,0 +1,1175 @@
+{
+ "when": "2026-11-15T07:43:16.232Z",
+ "consoleErrors": [],
+ "consoleWarnings": [],
+ "externalRequests": [],
+ "c2": {
+  "clicks": 2,
+  "steps": [
+   "「はじめる」",
+   "「飛ばす」"
+  ],
+  "mode": "flight",
+  "shots": [
+   "02_first_flight.png",
+   "02_first_result.png"
+  ]
+ },
+ "consoleErrorCount": 0,
+ "c3": {
+  "flights": {
+   "basic": {
+    "distance": 21.03,
+    "airtime": 5.67,
+    "maxHeight": 4.04,
+    "glideRatio": 4.74,
+    "landingZ": 1.09,
+    "kind": "glide",
+    "headline": "まっすぐ滑空",
+    "text": "重心がちょうどよい位置にあり、機首の上下も左右の傾きも安定して、まっすぐ滑空しました。滑空比は4.7（1m下がる間に4.7m前進）でした。",
+    "shots": [
+     "03_basic_design.png",
+     "03_basic_side_50.png",
+     "03_basic_result.png"
+    ]
+   },
+   "speed": {
+    "distance": 24.6,
+    "airtime": 3.36,
+    "maxHeight": 5.57,
+    "glideRatio": 2.27,
+    "landingZ": 0.63,
+    "kind": "fast",
+    "headline": "速く一気に飛んだ",
+    "text": "投げた勢いで高さ5.6mまで上がり、平均7.8m/sの速さで一気に24.6m飛びました。細い翼は空気の抵抗が小さく、速さを保てます。",
+    "shots": [
+     "03_speed_design.png",
+     "03_speed_side_50.png",
+     "03_speed_result.png"
+    ]
+   },
+   "floaty": {
+    "distance": 24.33,
+    "airtime": 8.89,
+    "maxHeight": 4,
+    "glideRatio": 6.13,
+    "landingZ": 1.78,
+    "kind": "float",
+    "headline": "ゆっくり長く浮かんだ",
+    "text": "広い翼が軽い機体を支え、平均2.8m/sでゆっくりと8.9秒浮かびました。滑空比は6.1（1m下がる間に6.1m前進）でした。",
+    "shots": [
+     "03_floaty_design.png",
+     "03_floaty_side_50.png",
+     "03_floaty_result.png"
+    ]
+   },
+   "stunt": {
+    "distance": 21.96,
+    "airtime": 6.98,
+    "maxHeight": 8.53,
+    "glideRatio": 2.37,
+    "landingZ": -2.78,
+    "kind": "loop",
+    "headline": "宙返り 1回",
+    "text": "宙返りを1回しました。水平尾翼の角度が大きく、速く投げたので、機首を上げる力が勝ち続けました。そのあとは滑空に移りました。",
+    "shots": [
+     "03_stunt_design.png",
+     "03_stunt_side_12.png",
+     "03_stunt_side_50.png",
+     "03_stunt_result.png"
+    ]
+   },
+   "fail": {
+    "distance": 6.98,
+    "airtime": 2.98,
+    "maxHeight": 4.18,
+    "glideRatio": 1.33,
+    "landingZ": 0.35,
+    "kind": "stall",
+    "headline": "失速をくり返した",
+    "text": "重心が後ろすぎて機首が最大52°まで上がり、失速を3回くり返して落ちました。重りを前へずらしてみましょう。",
+    "shots": [
+     "03_fail_design.png",
+     "03_fail_side_50.png",
+     "03_fail_result.png"
+    ]
+   }
+  },
+  "overview": "03_all_trails.png",
+  "allDifferent": true
+ },
+ "c4": {
+  "flights": {
+   "front": {
+    "weightPos": 0,
+    "distance": 8.28,
+    "airtime": 1.7,
+    "maxHeight": 4,
+    "glideRatio": 2.06,
+    "landingZ": 0.16,
+    "kind": "dive",
+    "headline": "急降下",
+    "text": "重心が前すぎて機首が30°下がり、約30°の角度で急降下しました（着地の速さ 7.1m/s）。重りを後ろへずらすか、水平尾翼の角度を大きくしてみましょう。",
+    "shots": [
+     "04_front_design.png",
+     "04_front_side_35.png",
+     "04_front_side_70.png",
+     "04_front_result.png"
+    ]
+   },
+   "center": {
+    "weightPos": 50,
+    "distance": 21.03,
+    "airtime": 5.67,
+    "maxHeight": 4.04,
+    "glideRatio": 4.74,
+    "landingZ": 1.09,
+    "kind": "glide",
+    "headline": "まっすぐ滑空",
+    "text": "重心がちょうどよい位置にあり、機首の上下も左右の傾きも安定して、まっすぐ滑空しました。滑空比は4.7（1m下がる間に4.7m前進）でした。",
+    "shots": [
+     "04_center_design.png",
+     "04_center_side_35.png",
+     "04_center_side_70.png",
+     "04_center_result.png"
+    ]
+   },
+   "rear": {
+    "weightPos": 100,
+    "distance": 11.19,
+    "airtime": 4.19,
+    "maxHeight": 4.23,
+    "glideRatio": 2.32,
+    "landingZ": 2.8,
+    "kind": "stall",
+    "headline": "失速をくり返した",
+    "text": "重心が後ろすぎて機首が最大45°まで上がり、失速を8回くり返して落ちました。重りを前へずらしてみましょう。",
+    "shots": [
+     "04_rear_design.png",
+     "04_rear_side_35.png",
+     "04_rear_side_70.png",
+     "04_rear_result.png"
+    ]
+   }
+  },
+  "overview": "04_three_trails.png",
+  "ok": true
+ },
+ "c5": {
+  "flights": {
+   "dihedral10": {
+    "dihedral": 10,
+    "distance": 26.49,
+    "airtime": 5.46,
+    "maxHeight": 4.02,
+    "glideRatio": 6.43,
+    "landingZ": -16.99,
+    "kind": "drift",
+    "headline": "横風に流された",
+    "text": "横風を受けて最大39°傾いたあと、翼は水平に戻り、風下（左）へ17.0m流されました。風が強いほど、また飛んでいる時間が長いほど大きく流されます。",
+    "maxBank": 38.7,
+    "lateBankAvg": 1.7,
+    "series": [
+     {
+      "t": 0,
+      "bank": 1.1,
+      "pitch": 3
+     },
+     {
+      "t": 0.1,
+      "bank": -26.2,
+      "pitch": 4.9
+     },
+     {
+      "t": 0.2,
+      "bank": -38.7,
+      "pitch": 8.2
+     },
+     {
+      "t": 0.3,
+      "bank": -29.8,
+      "pitch": 12.6
+     },
+     {
+      "t": 0.5,
+      "bank": -5.5,
+      "pitch": 4.1
+     },
+     {
+      "t": 0.6,
+      "bank": -5.1,
+      "pitch": 0.7
+     },
+     {
+      "t": 0.7,
+      "bank": -9.6,
+      "pitch": -1.7
+     },
+     {
+      "t": 0.8,
+      "bank": -12.5,
+      "pitch": -4
+     },
+     {
+      "t": 0.9,
+      "bank": -10.5,
+      "pitch": -6
+     },
+     {
+      "t": 0.9,
+      "bank": -10.5,
+      "pitch": -6
+     },
+     {
+      "t": 0.9,
+      "bank": -10.5,
+      "pitch": -6
+     },
+     {
+      "t": 0.9,
+      "bank": -10.5,
+      "pitch": -6
+     },
+     {
+      "t": 0.9,
+      "bank": -10.5,
+      "pitch": -6
+     },
+     {
+      "t": 0.9,
+      "bank": -10.5,
+      "pitch": -6
+     },
+     {
+      "t": 0.9,
+      "bank": -10.5,
+      "pitch": -6
+     },
+     {
+      "t": 0.9,
+      "bank": -10.5,
+      "pitch": -6
+     },
+     {
+      "t": 0.9,
+      "bank": -10.5,
+      "pitch": -6
+     },
+     {
+      "t": 0.9,
+      "bank": -10.5,
+      "pitch": -6
+     },
+     {
+      "t": 1,
+      "bank": -4.8,
+      "pitch": -8.4
+     },
+     {
+      "t": 1.1,
+      "bank": 0.4,
+      "pitch": -10.4
+     },
+     {
+      "t": 1.2,
+      "bank": 1.3,
+      "pitch": -11
+     },
+     {
+      "t": 1.3,
+      "bank": -2,
+      "pitch": -10.7
+     },
+     {
+      "t": 1.5,
+      "bank": -4.9,
+      "pitch": -7.9
+     },
+     {
+      "t": 1.6,
+      "bank": -1.3,
+      "pitch": -6.2
+     },
+     {
+      "t": 1.7,
+      "bank": 1.6,
+      "pitch": -4.4
+     },
+     {
+      "t": 1.8,
+      "bank": 1.2,
+      "pitch": -2.6
+     },
+     {
+      "t": 1.9,
+      "bank": -1.9,
+      "pitch": -1
+     },
+     {
+      "t": 2.1,
+      "bank": -5.7,
+      "pitch": 2.1
+     },
+     {
+      "t": 2.2,
+      "bank": -4.4,
+      "pitch": 3.5
+     },
+     {
+      "t": 2.3,
+      "bank": -2.4,
+      "pitch": 4.4
+     },
+     {
+      "t": 2.4,
+      "bank": -1.2,
+      "pitch": 4.9
+     },
+     {
+      "t": 2.5,
+      "bank": -1.5,
+      "pitch": 4.7
+     },
+     {
+      "t": 2.7,
+      "bank": -4.4,
+      "pitch": 2.1
+     },
+     {
+      "t": 2.8,
+      "bank": -5.4,
+      "pitch": -0.3
+     },
+     {
+      "t": 2.9,
+      "bank": -5.2,
+      "pitch": -3
+     },
+     {
+      "t": 3,
+      "bank": -3.6,
+      "pitch": -5.9
+     },
+     {
+      "t": 3,
+      "bank": -3.6,
+      "pitch": -5.9
+     },
+     {
+      "t": 3,
+      "bank": -3.6,
+      "pitch": -5.9
+     },
+     {
+      "t": 3,
+      "bank": -3.6,
+      "pitch": -5.9
+     },
+     {
+      "t": 3,
+      "bank": -3.6,
+      "pitch": -5.9
+     },
+     {
+      "t": 3,
+      "bank": -3.6,
+      "pitch": -5.9
+     },
+     {
+      "t": 3,
+      "bank": -3.6,
+      "pitch": -5.9
+     },
+     {
+      "t": 3,
+      "bank": -3.6,
+      "pitch": -5.9
+     },
+     {
+      "t": 3,
+      "bank": -3.6,
+      "pitch": -5.9
+     },
+     {
+      "t": 3,
+      "bank": -3.6,
+      "pitch": -5.9
+     },
+     {
+      "t": 3,
+      "bank": -3.6,
+      "pitch": -5.9
+     },
+     {
+      "t": 3.05,
+      "bank": -2.3,
+      "pitch": -7.2
+     },
+     {
+      "t": 3.25,
+      "bank": 2.7,
+      "pitch": -11.2
+     },
+     {
+      "t": 3.42,
+      "bank": 3.3,
+      "pitch": -12.7
+     },
+     {
+      "t": 3.52,
+      "bank": 2.2,
+      "pitch": -13.2
+     },
+     {
+      "t": 3.62,
+      "bank": 1.3,
+      "pitch": -13.6
+     },
+     {
+      "t": 3.72,
+      "bank": 1.5,
+      "pitch": -13.6
+     },
+     {
+      "t": 3.82,
+      "bank": 2.8,
+      "pitch": -13
+     },
+     {
+      "t": 3.92,
+      "bank": 4.3,
+      "pitch": -11.4
+     },
+     {
+      "t": 4.12,
+      "bank": 3.5,
+      "pitch": -6.3
+     },
+     {
+      "t": 4.22,
+      "bank": 2,
+      "pitch": -3.6
+     },
+     {
+      "t": 4.32,
+      "bank": 1.3,
+      "pitch": -1.1
+     },
+     {
+      "t": 4.42,
+      "bank": 1.7,
+      "pitch": 1.1
+     },
+     {
+      "t": 4.52,
+      "bank": 2.4,
+      "pitch": 3
+     },
+     {
+      "t": 4.62,
+      "bank": 2.6,
+      "pitch": 4.6
+     },
+     {
+      "t": 4.72,
+      "bank": 1.7,
+      "pitch": 5.9
+     },
+     {
+      "t": 4.82,
+      "bank": 0.3,
+      "pitch": 6.9
+     },
+     {
+      "t": 4.92,
+      "bank": -0.9,
+      "pitch": 7.4
+     },
+     {
+      "t": 4.92,
+      "bank": -0.9,
+      "pitch": 7.4
+     },
+     {
+      "t": 4.92,
+      "bank": -0.9,
+      "pitch": 7.4
+     },
+     {
+      "t": 4.92,
+      "bank": -0.9,
+      "pitch": 7.4
+     },
+     {
+      "t": 4.92,
+      "bank": -0.9,
+      "pitch": 7.4
+     },
+     {
+      "t": 4.92,
+      "bank": -0.9,
+      "pitch": 7.4
+     },
+     {
+      "t": 4.92,
+      "bank": -0.9,
+      "pitch": 7.4
+     },
+     {
+      "t": 4.92,
+      "bank": -0.9,
+      "pitch": 7.4
+     },
+     {
+      "t": 4.92,
+      "bank": -0.9,
+      "pitch": 7.4
+     },
+     {
+      "t": 4.92,
+      "bank": -0.9,
+      "pitch": 7.4
+     },
+     {
+      "t": 5.02,
+      "bank": -1.2,
+      "pitch": 7.4
+     },
+     {
+      "t": 5.12,
+      "bank": -0.5,
+      "pitch": 6.8
+     },
+     {
+      "t": 5.22,
+      "bank": 0.9,
+      "pitch": 5.5
+     },
+     {
+      "t": 5.32,
+      "bank": 2.3,
+      "pitch": 3.6
+     },
+     {
+      "t": 5.42,
+      "bank": 3,
+      "pitch": 1.4
+     }
+    ],
+    "shots": [
+     "05_dihedral10_chase_12.png",
+     "05_dihedral10_chase_50.png",
+     "05_dihedral10_chase_85.png",
+     "05_dihedral10_result.png"
+    ]
+   },
+   "dihedral0": {
+    "dihedral": 0,
+    "distance": 13.48,
+    "airtime": 6.13,
+    "maxHeight": 4,
+    "glideRatio": 3.37,
+    "landingZ": 6.71,
+    "kind": "spiral",
+    "headline": "右へ曲がり続けた",
+    "text": "風を受けて右へ傾いたまま水平に戻らず、向きを約104°変えながら曲がり続けました。上反角を大きくすると、傾いても水平に戻りやすくなります。",
+    "maxBank": 8,
+    "lateBankAvg": 4.9,
+    "series": [
+     {
+      "t": 0,
+      "bank": 1.1,
+      "pitch": 3
+     },
+     {
+      "t": 0.1,
+      "bank": -0.1,
+      "pitch": 7
+     },
+     {
+      "t": 0.2,
+      "bank": -0.3,
+      "pitch": 7.4
+     },
+     {
+      "t": 0.3,
+      "bank": 2.7,
+      "pitch": 7.5
+     },
+     {
+      "t": 0.4,
+      "bank": 6,
+      "pitch": 6.6
+     },
+     {
+      "t": 0.5,
+      "bank": 7.4,
+      "pitch": 5.2
+     },
+     {
+      "t": 0.7,
+      "bank": 6.2,
+      "pitch": 2.8
+     },
+     {
+      "t": 0.8,
+      "bank": 5.4,
+      "pitch": 0.7
+     },
+     {
+      "t": 0.9,
+      "bank": 4.9,
+      "pitch": -2
+     },
+     {
+      "t": 1,
+      "bank": 4.9,
+      "pitch": -5
+     },
+     {
+      "t": 1,
+      "bank": 4.9,
+      "pitch": -5
+     },
+     {
+      "t": 1,
+      "bank": 4.9,
+      "pitch": -5
+     },
+     {
+      "t": 1,
+      "bank": 4.9,
+      "pitch": -5
+     },
+     {
+      "t": 1,
+      "bank": 4.9,
+      "pitch": -5
+     },
+     {
+      "t": 1,
+      "bank": 4.9,
+      "pitch": -5
+     },
+     {
+      "t": 1,
+      "bank": 4.9,
+      "pitch": -5
+     },
+     {
+      "t": 1,
+      "bank": 4.9,
+      "pitch": -5
+     },
+     {
+      "t": 1.1,
+      "bank": 5.2,
+      "pitch": -8.2
+     },
+     {
+      "t": 1.2,
+      "bank": 5.9,
+      "pitch": -11.3
+     },
+     {
+      "t": 1.3,
+      "bank": 6.8,
+      "pitch": -13.7
+     },
+     {
+      "t": 1.5,
+      "bank": 8,
+      "pitch": -15.5
+     },
+     {
+      "t": 1.6,
+      "bank": 7.7,
+      "pitch": -15.4
+     },
+     {
+      "t": 1.7,
+      "bank": 6.9,
+      "pitch": -14.9
+     },
+     {
+      "t": 1.8,
+      "bank": 6.1,
+      "pitch": -13.8
+     },
+     {
+      "t": 1.9,
+      "bank": 5.9,
+      "pitch": -12
+     },
+     {
+      "t": 2,
+      "bank": 6.2,
+      "pitch": -9.4
+     },
+     {
+      "t": 2.1,
+      "bank": 6.5,
+      "pitch": -6.3
+     },
+     {
+      "t": 2.2,
+      "bank": 6.5,
+      "pitch": -3.2
+     },
+     {
+      "t": 2.4,
+      "bank": 6,
+      "pitch": 1.1
+     },
+     {
+      "t": 2.5,
+      "bank": 6,
+      "pitch": 2.2
+     },
+     {
+      "t": 2.6,
+      "bank": 6.2,
+      "pitch": 2.9
+     },
+     {
+      "t": 2.7,
+      "bank": 6.4,
+      "pitch": 3.1
+     },
+     {
+      "t": 2.8,
+      "bank": 6.6,
+      "pitch": 3.1
+     },
+     {
+      "t": 2.9,
+      "bank": 6.7,
+      "pitch": 2.7
+     },
+     {
+      "t": 3,
+      "bank": 6.8,
+      "pitch": 1.9
+     },
+     {
+      "t": 3.1,
+      "bank": 6.8,
+      "pitch": 0.7
+     },
+     {
+      "t": 3.2,
+      "bank": 6.7,
+      "pitch": -0.7
+     },
+     {
+      "t": 3.3,
+      "bank": 6.7,
+      "pitch": -2.1
+     },
+     {
+      "t": 3.3,
+      "bank": 6.7,
+      "pitch": -2.1
+     },
+     {
+      "t": 3.3,
+      "bank": 6.7,
+      "pitch": -2.1
+     },
+     {
+      "t": 3.3,
+      "bank": 6.7,
+      "pitch": -2.1
+     },
+     {
+      "t": 3.3,
+      "bank": 6.7,
+      "pitch": -2.1
+     },
+     {
+      "t": 3.3,
+      "bank": 6.7,
+      "pitch": -2.1
+     },
+     {
+      "t": 3.3,
+      "bank": 6.7,
+      "pitch": -2.1
+     },
+     {
+      "t": 3.3,
+      "bank": 6.7,
+      "pitch": -2.1
+     },
+     {
+      "t": 3.32,
+      "bank": 6.7,
+      "pitch": -2.3
+     },
+     {
+      "t": 3.42,
+      "bank": 6.7,
+      "pitch": -3.4
+     },
+     {
+      "t": 3.62,
+      "bank": 6.8,
+      "pitch": -4.7
+     },
+     {
+      "t": 3.72,
+      "bank": 6.8,
+      "pitch": -5.1
+     },
+     {
+      "t": 3.82,
+      "bank": 6.9,
+      "pitch": -5.7
+     },
+     {
+      "t": 3.92,
+      "bank": 6.9,
+      "pitch": -6.5
+     },
+     {
+      "t": 4.02,
+      "bank": 6.8,
+      "pitch": -7.5
+     },
+     {
+      "t": 4.12,
+      "bank": 6.6,
+      "pitch": -8.5
+     },
+     {
+      "t": 4.22,
+      "bank": 6.4,
+      "pitch": -9.3
+     },
+     {
+      "t": 4.42,
+      "bank": 5.6,
+      "pitch": -9.9
+     },
+     {
+      "t": 4.52,
+      "bank": 5.2,
+      "pitch": -9.9
+     },
+     {
+      "t": 4.62,
+      "bank": 4.8,
+      "pitch": -9.7
+     },
+     {
+      "t": 4.72,
+      "bank": 4.5,
+      "pitch": -9.4
+     },
+     {
+      "t": 4.82,
+      "bank": 4.4,
+      "pitch": -8.5
+     },
+     {
+      "t": 4.92,
+      "bank": 4.4,
+      "pitch": -7.2
+     },
+     {
+      "t": 5.02,
+      "bank": 4.4,
+      "pitch": -5.4
+     },
+     {
+      "t": 5.12,
+      "bank": 4.5,
+      "pitch": -3.7
+     },
+     {
+      "t": 5.22,
+      "bank": 4.5,
+      "pitch": -2.3
+     },
+     {
+      "t": 5.32,
+      "bank": 4.5,
+      "pitch": -1.3
+     },
+     {
+      "t": 5.42,
+      "bank": 4.4,
+      "pitch": -0.7
+     },
+     {
+      "t": 5.42,
+      "bank": 4.4,
+      "pitch": -0.7
+     },
+     {
+      "t": 5.42,
+      "bank": 4.4,
+      "pitch": -0.7
+     },
+     {
+      "t": 5.42,
+      "bank": 4.4,
+      "pitch": -0.7
+     },
+     {
+      "t": 5.42,
+      "bank": 4.4,
+      "pitch": -0.7
+     },
+     {
+      "t": 5.42,
+      "bank": 4.4,
+      "pitch": -0.7
+     },
+     {
+      "t": 5.42,
+      "bank": 4.4,
+      "pitch": -0.7
+     },
+     {
+      "t": 5.42,
+      "bank": 4.4,
+      "pitch": -0.7
+     },
+     {
+      "t": 5.45,
+      "bank": 4.4,
+      "pitch": -0.5
+     },
+     {
+      "t": 5.55,
+      "bank": 4.3,
+      "pitch": -0.2
+     },
+     {
+      "t": 5.65,
+      "bank": 4.3,
+      "pitch": -0.1
+     },
+     {
+      "t": 5.75,
+      "bank": 4.3,
+      "pitch": -0.1
+     },
+     {
+      "t": 5.85,
+      "bank": 4.3,
+      "pitch": -0.3
+     },
+     {
+      "t": 5.95,
+      "bank": 4.3,
+      "pitch": -0.8
+     },
+     {
+      "t": 6.05,
+      "bank": 4.4,
+      "pitch": -1.6
+     }
+    ],
+    "shots": [
+     "05_dihedral0_chase_12.png",
+     "05_dihedral0_chase_50.png",
+     "05_dihedral0_chase_85.png",
+     "05_dihedral0_result.png"
+    ]
+   }
+  },
+  "overview": "05_two_trails_top.png",
+  "ok": true
+ },
+ "c6": {
+  "flights": {
+   "wind0": {
+    "windSpeed": 0,
+    "distance": 21.03,
+    "airtime": 5.67,
+    "maxHeight": 4.04,
+    "glideRatio": 4.74,
+    "landingZ": 1.09,
+    "kind": "glide",
+    "headline": "まっすぐ滑空",
+    "text": "重心がちょうどよい位置にあり、機首の上下も左右の傾きも安定して、まっすぐ滑空しました。滑空比は4.7（1m下がる間に4.7m前進）でした。",
+    "shots": [
+     "06_wind0_top_60.png",
+     "06_wind0_result.png"
+    ]
+   },
+   "wind2": {
+    "windSpeed": 2,
+    "distance": 26.49,
+    "airtime": 5.46,
+    "maxHeight": 4.02,
+    "glideRatio": 6.43,
+    "landingZ": -16.99,
+    "kind": "drift",
+    "headline": "横風に流された",
+    "text": "横風を受けて最大39°傾いたあと、翼は水平に戻り、風下（左）へ17.0m流されました。風が強いほど、また飛んでいる時間が長いほど大きく流されます。",
+    "shots": [
+     "06_wind2_top_60.png",
+     "06_wind2_result.png"
+    ]
+   },
+   "wind4": {
+    "windSpeed": 4,
+    "distance": 22,
+    "airtime": 3.32,
+    "maxHeight": 4.01,
+    "glideRatio": 5.42,
+    "landingZ": -17.53,
+    "kind": "drift",
+    "headline": "横風に流された",
+    "text": "横風を受けて最大84°傾いたあと、平均12°傾いたまま、風下（左）へ17.5m流されました。風が強いほど、また飛んでいる時間が長いほど大きく流されます。",
+    "shots": [
+     "06_wind4_top_60.png",
+     "06_wind4_result.png"
+    ]
+   }
+  },
+  "overview": "06_wind_trails_top.png",
+  "ok": true
+ },
+ "c7": {
+  "run1": {
+   "distance": 28.20599401957685,
+   "airtime": 8.21546379071739,
+   "maxHeight": 4.1992864930331875,
+   "glideRatio": 6.132365010721469,
+   "landing": [
+    24.25521030022575,
+    0.02486285333802646,
+    -14.39662710235379
+   ],
+   "launch": [
+    0,
+    4,
+    0
+   ],
+   "endReason": "ground",
+   "steps": 3944
+  },
+  "run2": {
+   "distance": 28.20599401957685,
+   "airtime": 8.21546379071739,
+   "maxHeight": 4.1992864930331875,
+   "glideRatio": 6.132365010721469,
+   "landing": [
+    24.25521030022575,
+    0.02486285333802646,
+    -14.39662710235379
+   ],
+   "launch": [
+    0,
+    4,
+    0
+   ],
+   "endReason": "ground",
+   "steps": 3944
+  },
+  "identical": true,
+  "shots": [
+   "07_run1_result.png",
+   "07_run2_result.png"
+  ]
+ },
+ "c8": {
+  "trailCounts": [
+   4,
+   4,
+   4,
+   4,
+   4
+  ],
+  "final": [
+   {
+    "color": "#27ae60",
+    "current": true,
+    "distance": 20.47
+   },
+   {
+    "color": "#2f80ed",
+    "current": false,
+    "distance": 21.03
+   },
+   {
+    "color": "#ff7a2f",
+    "current": false,
+    "distance": 21.03
+   },
+   {
+    "color": "#9b51e0",
+    "current": false,
+    "distance": 21.03
+   }
+  ],
+  "maxOld": 3,
+  "shots": [
+   "08_trails_overview.png",
+   "08_flight5_result.png"
+  ],
+  "ok": true
+ },
+ "c9": {
+  "onState": true,
+  "offState": false,
+  "picturesDiffer": true,
+  "shots": [
+   "09_arrows_off.png",
+   "09_arrows_on.png",
+   "09_arrows_on_side.png",
+   "09_arrows_off_again.png"
+  ],
+  "ok": true
+ },
+ "c10": {
+  "distance": 6.98,
+  "airtime": 2.98,
+  "maxHeight": 4.18,
+  "glideRatio": 1.33,
+  "landingZ": 0.35,
+  "kind": "stall",
+  "headline": "失速をくり返した",
+  "text": "重心が後ろすぎて機首が最大52°まで上がり、失速を3回くり返して落ちました。重りを前へずらしてみましょう。",
+  "commentVisible": true,
+  "hasFix": true,
+  "shots": [
+   "10_fail_side_50.png",
+   "10_fail_result.png"
+  ],
+  "ok": true
+ },
+ "c13": {
+  "design": true,
+  "flight": true,
+  "result": true,
+  "byKey": true,
+  "shots": [
+   "13_help_design.png",
+   "13_help_flight.png",
+   "13_help_result.png"
+  ],
+  "ok": true
+ },
+ "c11": {
+  "name": "確認用の設計",
+  "before": [
+   "確認用の設計"
+  ],
+  "after": [
+   "確認用の設計"
+  ],
+  "helpShownAgain": false,
+  "sameSetup": true,
+  "shots": [
+   "11_saved.png",
+   "11_reopened.png",
+   "11_loaded.png"
+  ],
+  "ok": true
+ }
+}

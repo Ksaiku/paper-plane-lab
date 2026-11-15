@@ -90,7 +90,7 @@ export function createCameraRig(canvas) {
       fwd.set(Math.cos(h), 0, Math.sin(h));
       side.set(-Math.sin(h), 0, Math.cos(h));
       if (first) { dirH.copy(fwd); smoothY = planePos.y; }
-      wantFov = kind === 'chase' ? 52 : 44;
+      wantFov = kind === 'chase' ? 48 : 42;
       ease = 0.7;
       canvas.style.cursor = 'default';
     },
@@ -123,20 +123,20 @@ export function createCameraRig(canvas) {
         }
         smoothY += (planePos.y - smoothY) * (1 - Math.exp(-dt / 0.5));
         if (mode === 'chase') {
-          wantPos.copy(planePos).addScaledVector(dirH, -1.55);
-          wantPos.y += 0.46;
+          wantPos.copy(planePos).addScaledVector(dirH, -1.2);
+          wantPos.y += 0.36;
           wantTarget.copy(planePos).addScaledVector(dirH, 0.35);
           wantUp.set(0, 1, 0);
         } else if (mode === 'side') {
-          wantPos.copy(planePos).addScaledVector(side, 5.2).addScaledVector(fwd, -0.4);
-          wantPos.y = smoothY * 0.55 + 0.9;
+          wantPos.copy(planePos).addScaledVector(side, 3.4).addScaledVector(fwd, -0.3);
+          wantPos.y = smoothY * 0.8 + 0.45;
           wantTarget.copy(planePos).addScaledVector(fwd, 0.6);
           wantTarget.y = planePos.y * 0.75 + smoothY * 0.25;
           wantUp.set(0, 1, 0);
         } else {
           // 上から：画面の上が投げた向き
           wantPos.copy(planePos).addScaledVector(fwd, 0.8);
-          wantPos.y = Math.max(planePos.y + 9, 10);
+          wantPos.y = Math.max(planePos.y + 7, 8);
           wantTarget.copy(planePos).addScaledVector(fwd, 0.8);
           wantUp.copy(fwd);
         }

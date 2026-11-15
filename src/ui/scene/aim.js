@@ -9,12 +9,12 @@ export function createAim() {
   const mat = new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.85, depthWrite: false, toneMapped: false });
   // 点線（小さな円柱を並べる）
   const N = 14;
-  const dashGeo = new THREE.CylinderGeometry(0.004, 0.004, 1, 6);
+  const dashGeo = new THREE.CylinderGeometry(0.0028, 0.0028, 1, 8);
   dashGeo.rotateZ(-Math.PI / 2); // 長さの向きを x に
   const dashes = new THREE.InstancedMesh(dashGeo, mat, N);
   dashes.frustumCulled = false;
   group.add(dashes);
-  const headGeo = new THREE.ConeGeometry(0.018, 0.05, 12);
+  const headGeo = new THREE.ConeGeometry(0.011, 0.045, 16);
   headGeo.rotateZ(-Math.PI / 2);
   const head = new THREE.Mesh(headGeo, mat);
   group.add(head);
