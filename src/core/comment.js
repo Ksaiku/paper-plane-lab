@@ -68,7 +68,9 @@ export function makeComment(rec) {
   }
 
   // --- 投げた瞬間の速さが足りない ---
-  if (sm <= 0.27 && trimV && stats.launchAirspeed < 0.72 * trimV && (stats.stallCount >= 1 || stats.impactPitch < -15)) {
+  const slowLaunch = trimV && stats.launchAirspeed < 0.72 * trimV;
+  const notRecovered = stats.impactPitch < -15 || stats.stallFraction > 0.2 || r.airtime < 2.5;
+  if (sm <= 0.27 && slowLaunch && notRecovered && (stats.stallCount >= 1 || stats.impactPitch < -15)) {
     const v = f1(stats.launchAirspeed), vt = f1(trimV);
     if (windAlong > 0.7) {
       return out('stall', '速さが足りず失速', `追い風のため、投げた瞬間の空気に対する速さが${v}m/sしかなく（釣り合う速さは約${vt}m/s）、翼が空気を受けきれずに機首から落ちました。向かい風に向けて投げるか、もっと速く投げてみましょう。`);
@@ -125,6 +127,9 @@ export function makeComment(rec) {
 
   // --- 1回だけ失速 ---
   if (stats.stallCount === 1) {
+    if (slowLaunch) {
+      return out('stall', '速さが足りず一度沈んだ', `投げた瞬間の空気に対する速さ${f1(stats.launchAirspeed)}m/sが、釣り合う速さ（約${f1(trimV)}m/s）に足りず、いったん失速して機首を${f0(-stats.minPitch)}°下げ、速さをかせいでから滑空に移りました。${windNote || 'もう少し速く投げると、高さを失わずに済みます。'}`);
+    }
     return out('stall', '1回失速して立て直した', `投げたあと機首が${f0(stats.maxPitch)}°まで上がって速さを失い、1回失速しましたが、機首を下げて立て直しました。${windNote || 'もう少しゆっくり、水平に近く投げると失速しません。'}`);
   }
 

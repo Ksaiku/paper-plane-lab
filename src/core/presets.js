@@ -38,7 +38,7 @@ export const PRESETS = [
     blurb: '宙返りしやすい',
     setup: {
       wingSpan: 22, wingChord: 11, wingSweep: 15, wingDihedral: 6,
-      tailSpan: 15, tailAngle: 7, finHeight: 5,
+      tailSpan: 12.5, tailAngle: 7, finHeight: 5,
       weightPos: 30, weightMass: 1.5,
       throwSpeed: 14, throwPitch: 10,
     },

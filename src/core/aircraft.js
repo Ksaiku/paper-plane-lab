@@ -40,6 +40,13 @@ export function getLimits(setup) {
     lim.tailSpan.max,
     floorStep(((chordRoom - setup.wingChord / 100) / BUILD.tailChordRatio) * 100, PARAM_MAP.tailSpan.step)
   );
+  // 垂直尾翼：付け根が主翼の後縁より後ろに収まる（垂直尾翼は胴体の折り返しを立てて作るため）
+  const finChord = (BUILD.finChordRatio * setup.finHeight) / 100;
+  lim.wingChord.max = Math.min(lim.wingChord.max, floorStep((chordRoom - finChord) * 100, PARAM_MAP.wingChord.step));
+  lim.finHeight.max = Math.min(
+    lim.finHeight.max,
+    floorStep(((chordRoom - setup.wingChord / 100) / BUILD.finChordRatio) * 100, PARAM_MAP.finHeight.step)
+  );
   // 後退角・翼幅：翼端の後縁が胴体の後端を越えない
   const cr = setup.wingChord / 100;
   const room = L - BUILD.wingRootLE - 0.25 * cr - 0.75 * BUILD.wingTaper * cr;
@@ -84,7 +91,7 @@ export function sanitizeSetup(input) {
     }
   }
   // 互いに関係する項目は決まった順に収める
-  for (const key of ['tailSpan', 'wingChord', 'wingSpan', 'wingSweep']) {
+  for (const key of ['tailSpan', 'finHeight', 'wingChord', 'wingSpan', 'wingSweep']) {
     s[key] = clampParam(s, key, s[key]);
   }
   for (const p of PARAMS) if (p.type !== 'bool') s[p.key] = clampParam(s, p.key, s[p.key]);

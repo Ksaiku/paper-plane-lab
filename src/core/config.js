@@ -49,7 +49,7 @@ export const BUILD = {
   tailChordRatio: 0.4, // 水平尾翼の付け根翼弦 ÷ 翼幅
   tailTaper: 0.7,
   tailLayers: 1,
-  finChordRatio: 1.1, // 垂直尾翼の付け根翼弦 ÷ 高さ
+  finChordRatio: 0.9, // 垂直尾翼の付け根翼弦 ÷ 高さ
   finTaper: 0.55,
   finLayers: 1,
   paperDensity: 800, // 紙の密度 [kg/m^3]（厚さ0.1mmで 80 g/m^2）

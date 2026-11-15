@@ -191,16 +191,24 @@ test('7. お手本の機体の滑空比が、現実の紙飛行機として不�
 });
 
 // ---------------------------------------------------------------
-test('8. 風を強くすると、風下へ大きく流される', () => {
-  let prev = -1;
-  for (const w of [0, 1, 2, 3, 4]) {
-    const st = computeStats(simulate({ ...presetSetup('basic'), windSpeed: w, windDir: 90 }));
-    if (w > 0) assert.ok(st.windDrift > prev + 1, `風${w}m/s: 風下へ ${st.windDrift}m（前は ${prev}m）`);
-    prev = st.windDrift;
-  }
-  // 左からの風なら右へ流される
+test('8. 風を強くすると、風下へ流される', () => {
+  const drift = (w, dir = 90) => computeStats(simulate({ ...presetSetup('basic'), windSpeed: w, windDir: dir })).windDrift;
+  // 無風では流されない。弱い横風で少し、強くすると大きく風下へ流される
+  const d0 = drift(0), d1 = drift(1), d2 = drift(2);
+  assert.ok(Math.abs(d0) < 1e-9);
+  assert.ok(d1 > 1.5, `風1m/s: 風下へ ${d1}m`);
+  assert.ok(d2 > d1 + 5, `風2m/s: 風下へ ${d2}m（風1m/sでは ${d1}m）`);
+  // さらに強い風では機体が大きく傾いて飛行が乱れるが、必ず風下側へ10m以上流される
+  for (const w of [3, 4, 5]) assert.ok(drift(w) > 10, `風${w}m/s: 風下へ ${drift(w)}m`);
+  // 風の向きを逆（左から）にすると、流される向きも逆（右へ）になる
   const left = computeStats(simulate({ ...presetSetup('basic'), windSpeed: 2, windDir: 270 }));
-  assert.ok(left.lateral > 5);
+  assert.ok(left.lateral > 5 && left.windDrift > 5);
+  const right = computeStats(simulate({ ...presetSetup('basic'), windSpeed: 2, windDir: 90 }));
+  assert.ok(right.lateral < -5);
+  // 追い風は飛距離を伸ばし、向かい風は縮める（同じ対気速度になるよう投げる速さを合わせる）
+  const tail = simulate({ ...presetSetup('basic'), windSpeed: 1.5, windDir: 180, throwSpeed: 6 });
+  const head = simulate({ ...presetSetup('basic'), windSpeed: 1.5, windDir: 0, throwSpeed: 3 });
+  assert.ok(tail.result.distance > head.result.distance + 8, `追い風 ${tail.result.distance} / 向かい風 ${head.result.distance}`);
 });
 
 // ---------------------------------------------------------------
@@ -218,6 +226,7 @@ test('9. 垂直尾翼が小さすぎると、向きが安定せず、くるく�
 
 // ---------------------------------------------------------------
 test('10. お手本の5種類は、それぞれ飛び方が違う', () => {
+  for (const p of PRESETS) assert.deepStrictEqual(sanitizeSetup(presetSetup(p.id)), presetSetup(p.id), `${p.id} は範囲内`);
   const recs = Object.fromEntries(PRESETS.map((p) => [p.id, simulate(presetSetup(p.id))]));
   const st = Object.fromEntries(Object.entries(recs).map(([k, r]) => [k, computeStats(r)]));
   const kinds = Object.fromEntries(Object.entries(recs).map(([k, r]) => [k, makeComment(r).kind]));
