@@ -1,0 +1,17 @@
+{
+  "name": "paper-plane-lab",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "紙飛行機デザインラボ（3D物理シミュレーター）",
+  "scripts": {
+    "test": "node --test \"tests/*.test.mjs\"",
+    "build": "node build.mjs",
+    "verify": "node scripts/verify.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "playwright-core": "^1.65.1",
+    "three": "^0.170.0"
+  }
+}
